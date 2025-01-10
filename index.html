@@ -413,6 +413,12 @@ setInterval(checkIfLive, 10000);  // Check live status every 10 seconds
 
 // Add event listener for betSize input field change
 document.getElementById('betSize').addEventListener('input', updateWinAmountDisplay);
+
+  document.getElementById("menuButton").addEventListener("click", function() {
+    var menuPopup = document.querySelector(".menu-popup");
+    menuPopup.style.display = (menuPopup.style.display === "flex") ? "none" : "flex";
+  });
+
 </script>
 </body>
 </html>
