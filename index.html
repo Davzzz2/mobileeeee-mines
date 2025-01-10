@@ -75,33 +75,42 @@
     </style>
 </head>
 <body>
+    <!-- Back Arrow -->
     <a href="../index.html" class="back-arrow">←</a>
-<div class="header-links">
-    <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
-    <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
-    <a href="http://kick.com/enjayy" target="_blank">Enjayy's Kick <span id="live-status-text">LIVE</span></a>
-    <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
-</div>
 
-<!-- Mobile Menu Button (only visible on mobile) -->
-<button class="mobile-menu" onclick="toggleMobileMenu()">&#x22EE;</button>
-
-<!-- Mobile Overlay Menu (hidden by default, shows on mobile) -->
-<div id="mobile-menu-overlay" class="mobile-menu-overlay">
-    <div class="mobile-menu-links">
+    <!-- Header Links -->
+    <div class="header-links">
         <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
         <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
         <a href="http://kick.com/enjayy" target="_blank">Enjayy's Kick <span id="live-status-text">LIVE</span></a>
         <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
-    </div>ef="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
     </div>
+
     <div class="announcement">
         <strong>Updates Posted in Discord</strong>
     </div>
 
+    <!-- Mobile Menu Button (only visible on mobile) -->
+    <button class="mobile-menu" onclick="toggleMobileMenu()">&#x22EE;</button>
+
+    <!-- Mobile Overlay Menu (hidden by default, shows on mobile) -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-links">
+            <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
+            <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
+            <a href="http://kick.com/enjayy" target="_blank">Enjayy's Kick <span id="live-status-text">LIVE</span></a>
+            <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
+        </div>
+        <div class="announcement">
+            <strong>Updates Posted in Discord</strong>
+        </div>
+    </div>
+
+    <!-- Back Button -->
     <button id="backButton" onclick="window.location.href='../index.html'"><</button>
 
-   <div class="container">
+    <!-- Main Content Container -->
+    <div class="container">
         <h1 class="header">Mines Assistant</h1>
         <div class="wrapper">
             <form id="minesForm">
@@ -127,13 +136,17 @@
 
             </form>
 
+            <!-- Mines Board and Results -->
             <div id="minesBoard"></div>
             <div id="minesResults"></div>
             <div id="cursor" class="cursor"></div>
         </div>
+    </div>
+
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-content">
-            <p>� 2024 GambleAssist. All rights reserved.</p>
+            <p>&#169; 2024 GambleAssist. All rights reserved.</p>
         </div>
     </footer>
 </div>
