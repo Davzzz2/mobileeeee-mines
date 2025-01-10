@@ -231,7 +231,7 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
-            margin-left: 10px;
+            margin-left: 5px; /* Add a little margin for spacing */
         }
 
         button:hover {
@@ -247,17 +247,31 @@
 
         .multiplier-container {
             display: flex;
-            flex-direction: column;
-            margin-left: 975px; /* Moves the whole section to the right */
-            margin-top: 30px;
+            flex-direction: row;
+            align-items: center; /* Align items vertically centered */
+            margin-top: 10px; /* Add space above the multiplier section */
         }
 
         #multiplier {
-            margin-left: 75px; /* Adjust this value to move the input field more to the right */
+            width: 50px; /* Smaller width for multiplier input */
+            margin-right: 5px; /* Space between input and button */
         }
 
         #generatePatternButton {
-            margin-top: 10px; /* Adjust this value to move the button down */
+            padding: 6px 8px; /* Smaller pattern button */
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align items */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: center; /* Center the contents */
+            align-items: center; /* Vertically center */
+            margin: 5px 0; /* Space between rows */
         }
 
         .site-footer {
@@ -344,24 +358,29 @@
         <div class="wrapper">
             <form id="minesForm">
                 <div class="form-group">
-                    <label for="mines">Number of Mines</label>
-                    <input type="number" id="mines" name="mines" min="1" max="24" required>
-                    
-                    <label for="diamonds">Number of Diamonds</label>
-                    <input type="number" id="diamonds" name="diamonds" min="1" max="25" required>
-                    
-                    <label for="betSize">Bet Amount</label>
-                    <input type="number" id="betSize" name="betSize" step="0.01" min="0.01" required>
-                    
-                    <button type="button" onclick="doubleBet()">2x</button>
-                    <button type="button" onclick="halveBet()">1/2</button>
-                    <button type="button" onclick="generateMinesBoard()">Generate Mines Board</button>
-                    <button type="button" id="randomizeButton" onclick="randomizeMinesAndDiamonds()">Randomize</button>
-
-                    <!-- Multiplier Input -->
+                    <div class="form-row">
+                        <label for="mines">Number of Mines</label>
+                        <input type="number" id="mines" name="mines" min="1" max="24" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="diamonds">Number of Diamonds</label>
+                        <input type="number" id="diamonds" name="diamonds" min="1" max="25" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="betSize">Bet Amount</label>
+                        <input type="number" id="betSize" name="betSize" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="form-row">
+                        <button type="button" onclick="doubleBet()">2x</button>
+                        <button type="button" onclick="halveBet()">1/2</button>
+                    </div>
+                    <div class="form-row">
+                        <button type="button" onclick="generateMinesBoard()">Generate Mines Board</button>
+                        <button type="button" id="randomizeButton" onclick="randomizeMinesAndDiamonds()">Randomize</button>
+                    </div>
                     <div class="multiplier-container">
                         <label for="multiplier">Multiplier:</label>
-                        <input type="number" id="multiplier" name="multiplier" step="0.01" min="1" required oninput="updateWinAmount()" style="width: 50px;">
+                        <input type="number" id="multiplier" name="multiplier" step="0.01" min="1" required oninput="updateWinAmount()">
                         <button type="button" id="generatePatternButton" onclick="generatePatternBasedOnMultiplier()">Generate Pattern</button>
                     </div>
                 </div>
