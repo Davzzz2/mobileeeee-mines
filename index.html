@@ -164,7 +164,7 @@
 
         #minesBoard {
             display: grid;
-            grid-template-columns: repeat(5, 50px);
+            grid-template-columns: repeat(5, 50px); /* Default to 5x5 for desktop */
             grid-gap: 5px;
             margin-top: 20px;
             justify-content: center;
@@ -231,7 +231,7 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
-            margin-left: 5px; /* Add a little margin for spacing */
+            margin-left: 10px; /* Add a little margin for spacing */
         }
 
         button:hover {
@@ -243,22 +243,6 @@
             background-color: #ccc;
             color: #666;
             cursor: not-allowed;
-        }
-
-        .multiplier-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center; /* Align items vertically centered */
-            margin-top: 10px; /* Add space above the multiplier section */
-        }
-
-        #multiplier {
-            width: 50px; /* Smaller width for multiplier input */
-            margin-right: 5px; /* Space between input and button */
-        }
-
-        #generatePatternButton {
-            padding: 6px 8px; /* Smaller pattern button */
         }
 
         .form-group {
@@ -274,40 +258,18 @@
             margin: 5px 0; /* Space between rows */
         }
 
-        .site-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: white; /* Plain white text */
-            font-size: 16px; /* Text size */
-            background: none; /* Remove any background color */
-            padding: 10px 0; /* Minimal padding for spacing */
-            margin: 0;
+        .multiplier-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center; /* Align items vertically centered */
+            margin-top: 10px; /* Add space above the multiplier section */
         }
 
         /* Mobile styles */
         @media (max-width: 768px) {
-            .header-links {
-                display: none; /* Hide header links on mobile */
-            }
-
-            .menu-button {
-                display: block; /* Show menu button on mobile */
-            }
-
-            .menu {
-                display: none; /* Initially hide menu */
-            }
-
-            .menu.active {
-                display: flex; /* Show menu when active */
-            }
-
-            /* Make the input fields smaller on mobile */
+            /* Adjust input fields for mobile */
             input[type="number"] {
-                width: 50px !important; /* Set smaller width for mobile */
+                width: 50px !important; /* Smaller width for mobile */
             }
 
             /* Adjust button sizes for mobile */
@@ -317,16 +279,24 @@
                 margin: 5px; /* Add margin to separate buttons */
             }
 
-            #multiplier {
-                width: 50px !important; /* Smaller width for multiplier input */
+            /* Layout adjustments for mobile */
+            .form-group {
+                display: flex;
+                flex-direction: column; /* Stack vertically */
             }
 
-            #generatePatternButton {
-                padding: 6px 8px; /* Smaller pattern button */
+            .form-row {
+                flex-direction: row; /* Align label and input horizontally */
+                justify-content: center; /* Center the contents */
+            }
+
+            /* Ensure the buttons are aligned properly */
+            .multiplier-container {
+                margin-top: 10px; /* Add space above the multiplier section */
             }
 
             #minesBoard {
-                grid-template-columns: repeat(3, 40px); /* Adjust grid for smaller screens */
+                grid-template-columns: repeat(5, 40px); /* Force a 5x5 grid for mobile */
             }
 
             .cell {
@@ -563,6 +533,7 @@
             const board = document.getElementById('minesBoard');
             board.innerHTML = '';
             board.style.display = 'grid';
+            board.style.gridTemplateColumns = 'repeat(5, 50px)'; // Ensure 5x5 grid for desktop
             cells.forEach(cell => {
                 const cellDiv = document.createElement('div');
                 cellDiv.className = 'cell ' + cell;
