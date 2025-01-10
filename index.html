@@ -213,16 +213,18 @@
             font-size: 1.2em;
         }
 
+        /* Default input field size for desktop */
         input[type="number"] {
             margin: 0 10px;
             padding: 5px;
             border: 1px solid #bdc3c7;
             border-radius: 3px;
-            width: 75px; /* Adjusted width */
+            width: 100px; /* Default width on desktop */
         }
 
+        /* Default button styling for desktop */
         button {
-            padding: 8px 15px; /* Adjusted padding for smaller buttons */
+            padding: 10px 20px;
             border: 2px solid white;
             border-radius: 10px;
             background-color: black;
@@ -230,7 +232,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
             margin-left: 10px;
-            font-size: 0.8em; /* Smaller font size for buttons */
         }
 
         button:hover {
@@ -290,15 +291,15 @@
                 display: flex; /* Show menu when active */
             }
 
-            /* Make the input fields a bit bigger */
+            /* Make the input fields smaller on mobile */
             input[type="number"] {
-                width: 75px !important; /* Set width for mobile */
+                width: 50px !important; /* Set smaller width for mobile */
             }
 
             /* Adjust button sizes for mobile */
             button {
-                padding: 8px 12px; /* Smaller buttons for mobile */
-                font-size: 0.7em; /* Smaller font size for buttons */
+                padding: 6px 12px; /* Smaller buttons for mobile */
+                font-size: 0.8em; /* Smaller font size for buttons */
             }
 
             #minesBoard {
