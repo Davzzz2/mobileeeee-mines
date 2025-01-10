@@ -105,21 +105,34 @@
             color: white;
             font-size: 30px;
             margin: 20px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001; /* Ensure it is above the menu */
         }
 
         .menu {
             display: none;
             flex-direction: column;
             position: fixed;
-            top: 60px;
-            left: 0;
-            width: 100%;
+            top: 0;
+            right: 0;
+            width: 200px; /* Set width for the popout */
             background-color: black;
             z-index: 1001;
+            padding: 10px;
         }
 
         .menu.active {
-            display: flex;
+            display: flex; /* Show menu when active */
+        }
+
+        .menu .close-menu {
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            align-self: flex-end; /* Align close button to the right */
+            margin-bottom: 10px;
         }
 
         .announcement {
@@ -278,7 +291,7 @@
             input[type="number"], button {
                 font-size: 0.8em; /* Smaller input fields and buttons for mobile */
                 padding: 5px;
-                width: 80px; /* Reduce width for mobile */
+                width: 70px; /* Further reduce width for mobile */
             }
 
             #minesBoard {
@@ -295,6 +308,7 @@
 <body>
     <button class="menu-button" onclick="toggleMenu()">☰</button>
     <div class="menu" id="menu">
+        <div class="close-menu" onclick="toggleMenu()">X</div>
         <div class="social-buttons">
             <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
             <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
@@ -305,6 +319,7 @@
             <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
         </div>
     </div>
+    
     <a href="../index.html" class="back-arrow">←</a>
     <div class="announcement">
         <strong>Updates Posted in Discord</strong>
