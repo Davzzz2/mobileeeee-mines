@@ -72,18 +72,19 @@
             box-shadow: 0 0 10px white;
         }
 
-        .social-buttons {
+        .header-links {
             display: flex;
             justify-content: space-around;
-            width: 100%;
             padding: 20px 0;
             background-color: black;
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            z-index: 100; /* Ensure visibility above other elements */
         }
 
-        .social-buttons a {
+        .header-links a {
             padding: 15px 25px;
             border: 2px solid white;
             border-radius: 10px;
@@ -94,13 +95,13 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .social-buttons a:hover {
+        .header-links a:hover {
             background-color: white;
             color: black;
         }
 
         .menu-button {
-            display: none;
+            display: none; /* Hidden by default */
             cursor: pointer;
             color: white;
             font-size: 30px;
@@ -272,8 +273,8 @@
 
         /* Mobile styles */
         @media (max-width: 768px) {
-            .social-buttons {
-                display: flex; /* Show social buttons on desktop */
+            .header-links {
+                display: none; /* Hide header links on mobile */
             }
 
             .menu-button {
@@ -306,21 +307,16 @@
     </style>
 </head>
 <body>
-    <button class="menu-button" onclick="toggleMenu()">☰</button>
-    <div class="menu" id="menu">
-        <div class="close-menu" onclick="toggleMenu()">X</div>
-        <div class="social-buttons">
-            <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
-            <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
-            <a href="http://kick.com/enjayy" target="_blank">
-                Enjayy's Kick
-                <span id="live-status-text">LIVE</span>
-            </a>
-            <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
-        </div>
-    </div>
-    
     <a href="../index.html" class="back-arrow">←</a>
+    <div class="header-links">
+        <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
+        <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
+        <a href="http://kick.com/enjayy" target="_blank">
+            Enjayy's Kick
+            <span id="live-status-text">LIVE</span>
+        </a>
+        <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
+    </div>
     <div class="announcement">
         <strong>Updates Posted in Discord</strong>
     </div>
@@ -365,11 +361,6 @@
     </div>
     
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
-
         // Cursor effect and movement
         const cursor = document.getElementById('cursor');
 
