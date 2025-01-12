@@ -1,78 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamble Assist</title>
     <style>
-        body, html {
-            cursor: none;
-        }
-
-        .cursor {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .trail {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 999;
-            animation: fadeOut 0.5s forwards;
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-        }
-
-        .site-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 16px;
-            background: none;
-            padding: 10px 0;
-            margin: 0;
-            text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
-        }
-
-        #backButton {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 30px;
-            color: white;
-            text-shadow: 0 0 5px white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid white;
-            box-shadow: 0 0 10px white;
-        }
-
-        /* Desktop Styles */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -119,16 +53,17 @@
             color: #ecf0f1;
             text-align: center;
             width: 100%;
-            background-color: black; 
+            background-color: black;
         }
 
         .container {
             text-align: center;
             width: 100%;
             margin-top: 20px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 
-                        0 0 20px rgba(255, 255, 255, 0.3),
-                        0 0 30px rgba(255, 255, 255, 0.2); /* White glow effect */  
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.2);
+            /* White glow effect */
         }
 
         .wrapper {
@@ -179,55 +114,132 @@
             background-position: center;
         }
 
+        #minesForm {
+            margin-bottom: -100px;
+        }
+
+        #multiplier,
+        #minesResults {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        input[type="number"] {
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #bdc3c7;
+            border-radius: 3px;
+            width: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        /* Ensure Multiplier and Generate Pattern are aligned properly */
+        .multiplier-container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 975px;
+            /* Moves the whole section to the right */
+            margin-top: 30px;
+        }
+
+        #multiplier {
+            margin-left: 75px;
+            /* Adjust this value to move the input field more to the right */
+        }
+
+        #generatePatternButton {
+            margin-top: 10px;
+            /* Adjust this value to move the button down */
+        }
+
+        .site-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9em;
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .site-footer {
-                position: relative; /* Ensure footer is at the bottom */
-                width: 100%;
+            .header-links {
+                display: none;
+                /* Hide header links on mobile */
             }
 
-            /* Adjust input fields for mobile */
-            input[type="number"] {
-                width: 60px !important; /* Smaller width for mobile */
-                padding: 5px;
-                font-size: 0.9em; /* Smaller font size */
-            }
-
-            /* Adjust button sizes for mobile */
-            button {
-                padding: 6px 10px; /* Smaller buttons for mobile */
-                font-size: 0.9em; /* Smaller font size for buttons */
-                margin: 5px; /* Add margin to separate buttons */
-            }
-
-            /* Layout adjustments for mobile */
-            .form-group {
-                display: flex;
-                flex-direction: column; /* Stack vertically */
-                align-items: center; /* Center align */
-            }
-
-            .form-row {
-                flex-direction: row; /* Align label and input horizontally */
-                justify-content: center; /* Center the contents */
-            }
-
-            /* Ensure the buttons are aligned properly */
-            .multiplier-container {
-                margin-top: 10px; /* Add space above the multiplier section */
+            .announcement {
+                margin-top: 50px;
+                /* Adjust margin for mobile */
             }
 
             #minesBoard {
-                grid-template-columns: repeat(5, 40px); /* Force a 5x5 grid for mobile */
+                grid-template-columns: repeat(3, 40px);
             }
 
             .cell {
                 width: 40px;
                 height: 40px;
             }
+
+            input[type="number"] {
+                width: 80px;
+                padding: 3px;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .multiplier-container {
+                margin-left: 0;
+                /* Reset margin for mobile */
+                align-items: center;
+                /* Center align items */
+            }
+
+            #multiplier {
+                margin-left: 0;
+                /* Reset margin for mobile */
+            }
+
+            #generatePatternButton {
+                margin-top: 5px;
+                /* Adjust for mobile */
+            }
+
+            .site-footer {
+                font-size: 0.8em;
+                /* Smaller footer text on mobile */
+            }
         }
 
-        /* Menu Styles */
+        /* Mobile Dropdown Menu */
         .menu {
             font-size: 16px;
             line-height: 1.6;
@@ -303,13 +315,14 @@
         }
 
         .submenu .submenu-link:hover {
-            background-color: #0a3cff; /* Highlight on hover */
-            color: #ffffff; /* Change hover color to white */
+            background-color: white; /* Highlight on hover */
+            color: black; /* Change hover color to black */
         }
     </style>
 </head>
+
 <body>
-    <a href="../index.html" class="back-arrow">←</a>
+    <button id="backButton" onclick="window.location.href='../index.html'" style="position: fixed; top: 20px; left: 20px; background-color: transparent; border: none; cursor: pointer; font-size: 30px; color: white; text-shadow: 0 0 5px white; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border: 2px solid white; box-shadow: 0 0 10px white;">←</button>
 
     <!-- Mobile Dropdown Menu -->
     <div class="menu">
@@ -351,8 +364,6 @@
     <div class="announcement">
         <strong>Updates Posted in Discord</strong>
     </div>
-
-    <button id="backButton" onclick="window.location.href='../index.html'"><</button>
 
     <div class="container">
         <h1 class="header">Mines Assistant</h1>
@@ -644,4 +655,5 @@
         document.getElementById('betSize').addEventListener('input', updateWinAmountDisplay);
     </script>
 </body>
+
 </html>
