@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mines Assistant</title>
+  <title>Gamble Assist</title>
   <style>
-    /* Global styles */
+    /* ===== Desktop (Original) Styles ===== */
+    /* Global settings */
     body, html {
       cursor: none;
       margin: 0;
@@ -13,61 +14,34 @@
       background-color: black;
       color: #ecf0f1;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      height: 100vh;
     }
-    a {
+    /* Social header */
+    .header-links {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      padding: 20px 0;
+      background-color: black;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .header-links a {
+      padding: 15px 25px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background-color: black;
       color: white;
       text-decoration: none;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    /* Custom cursor styles */
-    .cursor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 1000;
+    .header-links a:hover {
+      background-color: white;
+      color: black;
     }
-    .trail {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999;
-      animation: fadeOut 0.5s forwards;
-    }
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: scale(0.5);
-      }
-    }
-    /* Back button */
-    #backButton {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: transparent;
-      border: 2px solid white;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 30px;
-      color: white;
-      text-shadow: 0 0 5px white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 0 10px white;
-    }
-    /* Announcement */
+    /* Announcement banner */
     .announcement {
       margin-top: 80px;
       padding: 20px 0;
@@ -77,49 +51,47 @@
       width: 100%;
       background-color: black;
     }
-    /* Container and layout */
+    /* Container */
     .container {
-      width: 90%;
-      max-width: 1200px;
       text-align: center;
+      width: 100%;
       margin-top: 20px;
-      position: relative;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+                   0 0 20px rgba(255, 255, 255, 0.3),
+                   0 0 30px rgba(255, 255, 255, 0.2);
     }
     .wrapper {
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
-    /* Form styling */
-    form#minesForm {
+    /* Form and Input Styles */
+    #minesForm {
+      margin-bottom: -100px;
       display: flex;
       flex-direction: row;
+      align-items: center;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
     }
-    form#minesForm .form-group,
-    form#minesForm .multiplier-container {
+    #minesForm .form-group,
+    #minesForm .multiplier-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 10px;
     }
-    form#minesForm label {
+    #minesForm label {
       margin-bottom: 5px;
     }
-    form#minesForm input[type="number"] {
-      margin: 5px 0;
+    #minesForm input[type="number"] {
+      margin: 0 10px;
       padding: 5px;
       border: 1px solid #bdc3c7;
       border-radius: 3px;
       width: 100px;
     }
-    form#minesForm button {
+    #minesForm button {
       padding: 10px 20px;
       border: 2px solid white;
       border-radius: 10px;
@@ -127,19 +99,35 @@
       color: white;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
-      margin-top: 5px;
+      margin-left: 10px;
     }
-    form#minesForm button:hover {
+    #minesForm button:hover {
       background-color: white;
       color: black;
     }
-    /* Mines board */
+    #minesForm button:disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+    /* Multiplier container positioning (desktop only) */
+    .multiplier-container {
+      margin-left: 975px;
+      margin-top: 30px;
+    }
+    #multiplier {
+      margin-left: 75px;
+    }
+    #generatePatternButton {
+      margin-top: 10px;
+    }
+    /* Mines Board Styles */
     #minesBoard {
       display: grid;
       grid-template-columns: repeat(5, 50px);
       grid-gap: 5px;
-      justify-content: center;
       margin-top: 20px;
+      justify-content: center;
     }
     .cell {
       width: 50px;
@@ -171,10 +159,55 @@
       background-repeat: no-repeat;
       background-position: center;
     }
-    /* Results section */
+    /* Results */
     #minesResults {
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 1.2em;
+    }
+    /* Custom Cursor and Trail */
+    .cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    .trail {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+      animation: fadeOut 0.5s forwards;
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+    }
+    /* Back Button */
+    #backButton {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+      color: white;
+      text-shadow: 0 0 5px white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px white;
     }
     /* Footer */
     .site-footer {
@@ -190,23 +223,39 @@
       margin: 0;
       text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
     }
-    /* Desktop-specific styling for multiplier container */
-    .multiplier-container {
-      align-self: flex-start;
-      margin-left: 50px;
-      margin-top: 30px;
-    }
-    /* Mobile styles */
+    
+    /* ===== Mobile-Only Overrides ===== */
     @media (max-width: 768px) {
-      /* Remove social buttons (header-links) by not including them at all */
-      
-      form#minesForm {
+      /* Hide custom cursor and trail */
+      .cursor, .trail { display: none !important; }
+      /* Hide social header */
+      .header-links { display: none; }
+      /* Hide footer */
+      .site-footer { display: none; }
+      /* Center all content (except the fixed back button) */
+      body {
+        display: flex;
         flex-direction: column;
         align-items: center;
       }
+      .container {
+        text-align: center;
+        margin-top: 80px;
+      }
+      /* Stack input fields vertically */
+      #minesForm {
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Remove desktop-specific multiplier-container offset */
       .multiplier-container {
         margin-left: 0;
+        margin-top: 20px;
       }
+      #multiplier {
+        margin-left: 0;
+      }
+      /* Scale down mines board */
       #minesBoard {
         grid-template-columns: repeat(5, 40px);
         grid-gap: 4px;
@@ -219,17 +268,30 @@
   </style>
 </head>
 <body>
-  <!-- Back button -->
-  <button id="backButton" onclick="window.location.href='../index.html'"><</button>
+  <!-- Desktop Social Header -->
+  <div class="header-links">
+    <a href="https://www.youtube.com/@imenjayy" target="_blank">Enjayy's Youtube</a>
+    <a href="https://discord.gg/enjayy" target="_blank">Enjayy's Discord</a>
+    <a href="http://kick.com/enjayy" target="_blank">
+      Enjayy's Kick
+      <span id="live-status-text">LIVE</span>
+    </a>
+    <a href="http://stake.com/?c=penny" target="_blank">Code PENNY on Stake</a>
+  </div>
   
+  <!-- Announcement -->
   <div class="announcement">
     <strong>Updates Posted in Discord</strong>
   </div>
   
+  <!-- Back Button -->
+  <button id="backButton" onclick="window.location.href='../index.html'"><</button>
+  
+  <!-- Main Container -->
   <div class="container">
     <h1 class="header">Mines Assistant</h1>
     <div class="wrapper">
-      <!-- The form for input fields -->
+      <!-- Form -->
       <form id="minesForm">
         <div class="form-group">
           <label for="mines">Number of Mines:</label>
@@ -252,33 +314,38 @@
         </div>
       </form>
       
-      <!-- Mines board and results -->
+      <!-- Mines Board and Results -->
       <div id="minesBoard"></div>
       <div id="minesResults"></div>
       <div id="cursor" class="cursor"></div>
     </div>
+    
+    <!-- Desktop Footer -->
     <footer class="site-footer">
       <p>© 2024 GambleAssist. All rights reserved.</p>
     </footer>
   </div>
-
+  
+  <!-- JavaScript -->
   <script>
-    // Cursor effect and movement
+    // Custom cursor effect (desktop only)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (event) => {
       const x = event.pageX;
       const y = event.pageY;
       cursor.style.left = `${x - 10}px`;
       cursor.style.top = `${y - 10}px`;
+      
       const trail = document.createElement('div');
       trail.className = 'trail';
       trail.style.left = `${x - 5}px`;
       trail.style.top = `${y - 5}px`;
       document.body.appendChild(trail);
+      
       setTimeout(() => { trail.remove(); }, 500);
     });
     
-    // Calculation and game logic functions
+    // Game logic functions
     function factorial(number) {
       let value = 1;
       for (let i = number; i > 1; i--) {
@@ -337,6 +404,7 @@
       const lower = Math.min(generatedMines, generatedDiamonds);
       document.getElementById('mines').value = higher;
       document.getElementById('diamonds').value = lower;
+      
       const totalCells = 25;
       const cells = Array(totalCells).fill('');
       let indices = Array.from({ length: totalCells }, (v, i) => i).sort(() => Math.random() - 0.5);
